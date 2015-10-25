@@ -10,22 +10,23 @@ TERMS = '#Diwali'
 #LED = 22
 
 # Twitter application authentication
-APP_KEY = 'j2lUkuWFfdUTlopxGmkPcrmYE'
-APP_SECRET = 'qaOkHjomIJGtfsgDWIGMJ7a1vhgY9oB2zRWN2PyKRmM0bVbOsp'
-OAUTH_TOKEN = '1610388554-wcneXN2e9IB8wJ7oYQudCHzjc1APtDvQLdsfLtK'
-OAUTH_TOKEN_SECRET = 'nk1sNDltROEYj2iszKQafSH17iLEnRZm9gZtSWgE5pdTI'
+APP_KEY = ''
+APP_SECRET = ''
+OAUTH_TOKEN = ''
+OAUTH_TOKEN_SECRET = ''
 
 # Setup callbacks from Twython Streamer
 class DiwaliStreamer(TwythonStreamer):
         def on_success(self, data):
-                if 'text' in data:
-                        tweetstring=data['text'].encode('utf-8')
-			print tweetstring
-			if ((tweetstring.find("green")+1) or (tweetstring.find("Green")+1)):
-				tone=random.randrange(1,7)
-				tone_str=str(tone)
-				play_str="aplay "+tone_str+".wav"
-				os.system(play_str)
+			if 'text' in data:
+				tweetstring=data['text'].encode('utf-8')
+				tweetstringl=tweetstring.lower()
+				if ((tweetstringl.find("green")+1)):
+					print tweetstring
+					tone=random.randrange(1,7)
+					tone_str=str(tone)
+					play_str="aplay "+tone_str+".wav"
+					os.system(play_str)
 
 # Setup GPIO as output
 #GPIO.setmode(GPIO.BOARD)
